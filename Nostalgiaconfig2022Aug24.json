@@ -1,0 +1,141 @@
+{
+  "dry_run": true,
+  "max_open_trades": 2,
+  "stake_currency": "USDT",
+  "stake_amount": "unlimited",
+  "tradable_balance_ratio": 0.99,
+  "fiat_display_currency": "USD",
+  "force_entry_enable": true,
+  "unfilledtimeout": {
+    "entry": 15,
+    "exit": 15,
+    "exit_timeout_count": 0,
+    "unit": "minutes"
+  },
+  "order_types": {
+    "entry": "limit",
+    "exit": "limit",
+    "emergency_exit": "limit",
+    "force_entry": "limit",
+    "force_exit": "limit",
+    "stoploss": "limit",
+    "stoploss_on_exchange": false,
+    "stoploss_on_exchange_interval": 60
+  },
+  "entry_pricing": {
+    "price_side": "other",
+    "use_order_book": false,
+    "order_book_top": 1,
+    "price_last_balance": 0.0,
+    "check_depth_of_market": {
+      "enabled": false,
+      "bids_to_ask_delta": 1
+    }
+  },
+  "exit_pricing": {
+    "price_side": "other",
+    "use_order_book": false,
+    "order_book_top": 1,
+    "price_last_balance": 0.0
+  },
+  "exchange": {
+    "name": "binance",
+    "key": "WhEjfQnfwk8A2TmVvIukdW1vGJhOJZMuSpI2b1gSLkxhbHXf4k4uI0wlojzLfxHv",
+    "secret": "BUlZhoWR37NjMU7CM8uWtFOzgLzZPqB4WRfwuDp7gTqcJL1On8i9FSrBNN4lYkVY",
+    "ccxt_config": {
+      "enableRateLimit": true,
+      "rateLimit": 200
+    },
+    "ccxt_async_config": {
+      "enableRateLimit": true,
+      "rateLimit": 200
+    },
+    "pair_blacklist": [
+      // Exchange
+      "(BNB)/.*",
+      // Leverage
+      ".*(_PREMIUM|BEAR|BULL|HALF|HEDGE|UP|DOWN|[1235][SL])/.*",
+      // Fiat
+      "(AUD|BRZ|CAD|CHF|EUR|GBP|HKD|IDRT|JPY|NGN|RUB|SGD|TRY|UAH|USD|ZAR)/.*",
+      // Stable
+      "(BUSD|CUSD|CUSDT|DAI|PAXG|SUSD|TUSD|USDC|USDN|USDP|USDT|VAI|UST|USTC|AUSD)/.*",
+      // FAN
+      "(ACM|AFA|ALA|ALL|APL|ASR|ATM|BAR|CAI|CITY|FOR|GAL|GOZ|IBFK|JUV|LEG|LOCK-1|NAVI|NMR|NOV|PFL|PORTO|PSG|ROUSH|STV|TH|TRA|UCH|UFC|YBO)/.*",
+      // Others
+      "(1EARTH|ILA|BOBA|CTXC|CWAR|HBAR|NMR|OMG|ONG|ARDR|DMTR|MLS|TORN)/.*"
+    ]
+  },
+  "pairlists": [
+    {
+      "method": "VolumePairList",
+      "number_assets": 100,
+      "sort_key": "quoteVolume",
+      "refresh_period": 1800
+    },
+    {
+      "method": "AgeFilter",
+      "min_days_listed": 30
+    },
+    {
+      "method": "RangeStabilityFilter",
+      "lookback_days": 3,
+      "min_rate_of_change": 0.03,
+      "refresh_period": 1800
+    },
+    {
+      "method": "VolatilityFilter",
+      "lookback_days": 3,
+      "min_volatility": 0.01,
+      "max_volatility": 0.75,
+      "refresh_period": 43200
+    },
+    {
+      "method": "VolumePairList",
+      "number_assets": 70,
+      "sort_key": "quoteVolume"
+    },
+    { "method": "ShuffleFilter" }
+  ],
+  "edge": {
+    "enabled": false,
+    "process_throttle_secs": 3600,
+    "calculate_since_number_of_days": 7,
+    "allowed_risk": 0.01,
+    "stoploss_range_min": -0.01,
+    "stoploss_range_max": -0.1,
+    "stoploss_range_step": -0.01,
+    "minimum_winrate": 0.60,
+    "minimum_expectancy": 0.10,
+    "min_trade_number": 10,
+    "max_trade_duration_minute": 1440,
+    "remove_pumps": false
+  },
+  "telegram": {
+    "enabled": true,
+    "token": "5448124027:AAG_0aK3B4v1vQ-LnvetSziL9g80XFxCrG4",
+    "chat_id": "5569711611",
+    "keyboard": [
+      [ "/status", "/status table", "/stats" ],
+      [ "/count", "/start", "/help", "/mix_tags" ],
+      [ "/daily", "/performance", "/balance" ],
+      [ "/stop", "/forceexit", "/blacklist" ],
+      [ "/reload_config", "/stopbuy", "/profit" ]
+    ]
+  },
+  "api_server": {
+    "enabled": false,
+    "listen_ip_address": "127.0.0.1",
+    "listen_port": 8080,
+    "verbosity": "error",
+    "jwt_secret_key": "36c3e8030e1b9191abb514b3631d88ef66163fdb5f912cd49b590e8ef8baeddb",
+    "CORS_origins": [],
+    "username": "Hertztrader",
+    "password": "Hertzhearts@410410"
+  },
+  "bot_name": "freqtrade_bot",
+  "initial_state": "running",
+  "forcebuy_enable": true,
+  "internals": {
+    "process_throttle_secs": 2
+  }
+}
